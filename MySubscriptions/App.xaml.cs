@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using MySubscriptions.View;
 using Xamarin.Forms.Xaml;
 
 namespace MySubscriptions
@@ -10,7 +11,7 @@ namespace MySubscriptions
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
