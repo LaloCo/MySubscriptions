@@ -4,7 +4,7 @@ using Firebase.Auth;
 using MySubscriptions.ViewModel.Helpers;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Auth))]
+[assembly: Dependency(typeof(MySubscriptions.Droid.Dependencies.Auth))]
 namespace MySubscriptions.Droid.Dependencies
 {
     public class Auth : IAuth
