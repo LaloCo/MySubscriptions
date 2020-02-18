@@ -1,16 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MySubscriptions.ViewModel"
              x:Class="MySubscriptions.View.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:LoginVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <Grid Margin="16,0">
+        <Grid Margin="16,0"
+              BindingContext="{StaticResource vm}">
             <StackLayout x:Name="loginStackLayout"
                          VerticalOptions="Center"
                          IsVisible="True">
-                <Entry Placeholder="Email"/>
+                <Entry Placeholder="Email"
+                       Keyboard="Email"
+                       Text="{Binding Email, Mode=TwoWay}"/>
                 <Entry Placeholder="Password"
+                       Text="{Binding Password, Mode=TwoWay}"
                        IsPassword="True"/>
-                <Button Text="Login"/>
+                <Button Text="Login"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding CanLogin}"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Don't have an account?"/>
                     <Label Text="Register"
@@ -24,13 +37,20 @@
             <StackLayout x:Name="registerStackLayout"
                          VerticalOptions="Center"
                          IsVisible="False">
-                <Entry Placeholder="Name"/>
-                <Entry Placeholder="Email"/>
+                <Entry Placeholder="Name"
+                       Text="{Binding Name, Mode=TwoWay}"/>
+                <Entry Placeholder="Email"
+                       Keyboard="Email"
+                       Text="{Binding Email, Mode=TwoWay}"/>
                 <Entry Placeholder="Password"
+                       Text="{Binding Password, Mode=TwoWay}"
                        IsPassword="True"/>
                 <Entry Placeholder="Confirm password"
+                       Text="{Binding ConfirmPassword, Mode=TwoWay}"
                        IsPassword="True"/>
-                <Button Text="Register"/>
+                <Button Text="Register"
+                        Command="{Binding RegisterCommand}"
+                        CommandParameter="{Binding CanRegister}"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Already have an account?"/>
                     <Label Text="Login"
