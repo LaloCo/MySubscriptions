@@ -16,6 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="MainPage.xaml" />
+    <EmbeddedResource Remove="View\SubscriptionsPage.xaml" />
+    <EmbeddedResource Remove="View\NewSubscriptionPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />
@@ -24,5 +26,6 @@
     <Folder Include="View\" />
     <Folder Include="ViewModel\" />
     <Folder Include="ViewModel\Helpers\" />
+    <Folder Include="Model\" />
   </ItemGroup>
 </Project>
