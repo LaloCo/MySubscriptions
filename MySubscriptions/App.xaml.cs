@@ -11,7 +11,7 @@ namespace MySubscriptions
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new NavigationPage(new SubscriptionsPage());
         }
 
         protected override void OnStart()
