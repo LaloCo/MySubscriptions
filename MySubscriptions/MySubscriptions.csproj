@@ -16,8 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="MainPage.xaml" />
-    <EmbeddedResource Remove="View\SubscriptionsPage.xaml" />
-    <EmbeddedResource Remove="View\NewSubscriptionPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />
