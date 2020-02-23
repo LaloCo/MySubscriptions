@@ -52,13 +52,17 @@ namespace MySubscriptions.ViewModel
 
         private void SaveSubscription(object obj)
         {
-            DatabaseHelper.InsertSubscription(new Model.Subscription
+            bool result = DatabaseHelper.InsertSubscription(new Model.Subscription
             {
                 IsActive = IsActive,
                 Name = Name,
                 UserId = Auth.GetCurrentUserId(),
                 SubscribedDate = DateTime.Now
             });
+            if (result)
+                App.Current.MainPage.Navigation.PopAsync();
+            else
+                App.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again", "Ok");
         }
 
         private void OnPropertyChanged(string propertyName)
