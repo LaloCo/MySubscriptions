@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MySubscriptions.ViewModel;
 using MySubscriptions.ViewModel.Helpers;
 using Xamarin.Forms;
 
@@ -8,9 +9,12 @@ namespace MySubscriptions.View
 {
     public partial class SubscriptionsPage : ContentPage
     {
+        SubscriptionsVM vm;
         public SubscriptionsPage()
         {
             InitializeComponent();
+
+            vm = Resources["vm"] as SubscriptionsVM;
         }
 
         protected override async void OnAppearing()
@@ -21,6 +25,10 @@ namespace MySubscriptions.View
             {
                 await Task.Delay(300);
                 await Navigation.PushAsync(new LoginPage());
+            }
+            else
+            {
+                vm.ReadSubscriptions();
             }
         }
 
