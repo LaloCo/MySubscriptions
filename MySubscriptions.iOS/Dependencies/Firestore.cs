@@ -17,7 +17,16 @@ namespace MySubscriptions.iOS.Dependencies
 
         public async Task<bool> DeleteSubscription(Subscription subscription)
         {
-            return true;
+            try
+            {
+                var collection = Firebase.CloudFirestore.Firestore.SharedInstance.GetCollection("subscriptions");
+                await collection.GetDocument(subscription.Id).DeleteDocumentAsync();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool InsertSubscription(Subscription subscription)

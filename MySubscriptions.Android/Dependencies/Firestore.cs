@@ -23,7 +23,16 @@ namespace MySubscriptions.Droid.Dependencies
 
         public async Task<bool> DeleteSubscription(Subscription subscription)
         {
-            return true;
+            try
+            {
+                var collection = Firebase.Firestore.FirebaseFirestore.Instance.Collection("subscriptions");
+                collection.Document(subscription.Id).Delete();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool InsertSubscription(Subscription subscription)
