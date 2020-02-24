@@ -17,7 +17,7 @@ namespace MySubscriptions.iOS.Dependencies
 
         public Task<bool> DeleteSubscription(Subscription subscription)
         {
-            throw new NotImplementedException();
+
         }
 
         public bool InsertSubscription(Subscription subscription)

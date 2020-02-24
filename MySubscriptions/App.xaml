@@ -9,10 +9,15 @@
         <Color x:Key="mainColor">#86bbd8</Color>
         <Color x:Key="lightColor">#FFFFFF</Color>
         <Color x:Key="darkColor">#000000</Color>
+        <Color x:Key="destructiveColor">#ea526f</Color>
 
         <Style TargetType="Button">
             <Setter Property="BackgroundColor" Value="{StaticResource mainColor}"/>
             <Setter Property="TextColor" Value="{StaticResource lightColor}"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="destructiveButton">
+            <Setter Property="BackgroundColor" Value="{StaticResource destructiveColor}"/>
         </Style>
 
         <Style x:Key="accentLabel" TargetType="Label">

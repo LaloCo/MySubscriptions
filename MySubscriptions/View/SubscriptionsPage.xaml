@@ -16,7 +16,9 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Subscriptions}">
+        <ListView BindingContext="{StaticResource vm}"
+                  ItemsSource="{Binding Subscriptions}"
+                  SelectedItem="{Binding SelectedSubscription, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}"
