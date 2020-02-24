@@ -15,9 +15,9 @@ namespace MySubscriptions.iOS.Dependencies
         {
         }
 
-        public Task<bool> DeleteSubscription(Subscription subscription)
+        public async Task<bool> DeleteSubscription(Subscription subscription)
         {
-
+            return true;
         }
 
         public bool InsertSubscription(Subscription subscription)
@@ -67,7 +67,8 @@ namespace MySubscriptions.iOS.Dependencies
                         IsActive = (bool)(subscriptionDictionary.ValueForKey(new NSString("isActive")) as NSNumber),
                         Name = subscriptionDictionary.ValueForKey(new NSString("name")) as NSString,
                         UserId = subscriptionDictionary.ValueForKey(new NSString("author")) as NSString,
-                        SubscribedDate = FIRTimeToDateTime(subscriptionDictionary.ValueForKey(new NSString("subscribedDate")) as Firebase.CloudFirestore.Timestamp)
+                        SubscribedDate = FIRTimeToDateTime(subscriptionDictionary.ValueForKey(new NSString("subscribedDate")) as Firebase.CloudFirestore.Timestamp),
+                        Id = doc.Id
                     };
 
                     subscriptions.Add(subscription);
@@ -81,9 +82,32 @@ namespace MySubscriptions.iOS.Dependencies
             }
         }
 
-        public Task<bool> UpdateSubscription(Subscription subscription)
+        public async Task<bool> UpdateSubscription(Subscription subscription)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var keys = new[]
+                {
+                new NSString("name"),
+                new NSString("isActive")
+            };
+
+                var values = new NSObject[]
+                {
+                new NSString(subscription.Name),
+                new NSNumber(subscription.IsActive)
+                };
+
+                var subscriptionDocument = new NSDictionary<NSObject, NSObject>(keys, values);
+
+                var collection = Firebase.CloudFirestore.Firestore.SharedInstance.GetCollection("subscriptions");
+                await collection.GetDocument(subscription.Id).UpdateDataAsync(subscriptionDocument);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         private static NSDate DateTimeToNSDate(DateTime date)

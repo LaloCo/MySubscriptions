@@ -73,14 +73,22 @@ namespace MySubscriptions.ViewModel
             return !string.IsNullOrEmpty(Name);
         }
 
-        private void Update(object parameter)
+        private async void Update(object parameter)
         {
-            DatabaseHelper.UpdateSubscription(Subscription);
+            bool result = await DatabaseHelper.UpdateSubscription(Subscription);
+            if (result)
+                await App.Current.MainPage.Navigation.PopAsync();
+            else
+                await App.Current.MainPage.DisplayAlert("Error", "There was an error, please try again", "Ok");
         }
 
-        private void Delete(object parameter)
+        private async void Delete(object parameter)
         {
-            DatabaseHelper.DeleteSubscription(Subscription);
+            bool result = await DatabaseHelper.DeleteSubscription(Subscription);
+            if (result)
+                await App.Current.MainPage.Navigation.PopAsync();
+            else
+                await App.Current.MainPage.DisplayAlert("Error", "There was an error, please try again", "Ok");
         }
 
         private void OnPropertyChanged(string propertyName)

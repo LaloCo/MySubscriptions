@@ -21,9 +21,9 @@ namespace MySubscriptions.Droid.Dependencies
             subscriptions = new List<Subscription>();
         }
 
-        public Task<bool> DeleteSubscription(Subscription subscription)
+        public async Task<bool> DeleteSubscription(Subscription subscription)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool InsertSubscription(Subscription subscription)
@@ -65,9 +65,18 @@ namespace MySubscriptions.Droid.Dependencies
             return subscriptions;
         }
 
-        public Task<bool> UpdateSubscription(Subscription subscription)
+        public async Task<bool> UpdateSubscription(Subscription subscription)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Firebase.Firestore.FirebaseFirestore.Instance.Collection("subscriptions");
+                collection.Document(subscription.Id).Update("name", subscription.Name, "isActive", subscription.IsActive);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         private static Date DateTimeToNativeDate(DateTime date)
@@ -97,7 +106,8 @@ namespace MySubscriptions.Droid.Dependencies
                         IsActive = (bool)doc.Get("isActive"),
                         Name = doc.Get("name").ToString(),
                         UserId = doc.Get("author").ToString(),
-                        SubscribedDate = NativeDateToDateTime(doc.Get("subscribedDate") as Date)
+                        SubscribedDate = NativeDateToDateTime(doc.Get("subscribedDate") as Date),
+                        Id = doc.Id
                     };
 
                     subscriptions.Add(subscription);
