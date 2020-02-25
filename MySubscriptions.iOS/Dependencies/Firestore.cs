@@ -97,14 +97,14 @@ namespace MySubscriptions.iOS.Dependencies
             {
                 var keys = new[]
                 {
-                new NSString("name"),
-                new NSString("isActive")
-            };
+                    new NSString("name"),
+                    new NSString("isActive")
+                };
 
                 var values = new NSObject[]
                 {
-                new NSString(subscription.Name),
-                new NSNumber(subscription.IsActive)
+                    new NSString(subscription.Name),
+                    new NSNumber(subscription.IsActive)
                 };
 
                 var subscriptionDocument = new NSDictionary<NSObject, NSObject>(keys, values);
