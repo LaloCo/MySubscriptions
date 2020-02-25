@@ -23,9 +23,9 @@
                    Text="{Binding Name, Mode=TwoWay}"/>
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand">
+                <CheckBox IsChecked="{Binding IsActive, Mode=TwoWay}"/>
                 <Label Text="Is this subscription still active?"
                        VerticalOptions="Center"/>
-                <CheckBox IsChecked="{Binding IsActive, Mode=TwoWay}"/>
             </StackLayout>
             <Button Text="Delete"
                     Command="{Binding DeleteCommand}"
