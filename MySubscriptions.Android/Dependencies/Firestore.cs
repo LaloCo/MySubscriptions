@@ -35,7 +35,7 @@ namespace MySubscriptions.Droid.Dependencies
             }
         }
 
-        public bool InsertSubscription(Subscription subscription)
+        public Dictionary<bool, string> InsertSubscription(Subscription subscription)
         {
             try
             {
@@ -47,13 +47,14 @@ namespace MySubscriptions.Droid.Dependencies
                     { "isActive", subscription.IsActive },
                     { "subscribedDate", DateTimeToNativeDate(subscription.SubscribedDate) }
                 };
-                collection.Add(subcriptionDocument);
+                collection.Document(subscription.Id).Set(subcriptionDocument);
+                // collection.Add(subcriptionDocument);
 
-                return true;
+                return new Dictionary<bool, string>() { { true, "Success" } };
             }
             catch (Exception ex)
             {
-                return false;
+                return new Dictionary<bool, string>() { { false, ex.Message } };
             }
         }
 

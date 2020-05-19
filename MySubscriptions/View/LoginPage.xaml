@@ -11,23 +11,23 @@
 
     <ContentPage.Content>
         <Grid Margin="16,0"
-              BindingContext="{StaticResource vm}">
+                BindingContext="{StaticResource vm}">
             <StackLayout x:Name="loginStackLayout"
-                         VerticalOptions="Center"
-                         IsVisible="True">
+                            VerticalOptions="Center"
+                            IsVisible="True">
                 <Entry Placeholder="Email"
-                       Keyboard="Email"
-                       Text="{Binding Email, Mode=TwoWay}"/>
+                        Keyboard="Email"
+                        Text="{Binding Email, Mode=TwoWay}"/>
                 <Entry Placeholder="Password"
-                       Text="{Binding Password, Mode=TwoWay}"
-                       IsPassword="True"/>
+                        Text="{Binding Password, Mode=TwoWay}"
+                        IsPassword="True"/>
                 <Button Text="Login"
                         Command="{Binding LoginCommand}"
                         CommandParameter="{Binding CanLogin}"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Don't have an account?"/>
                     <Label Text="Register"
-                           Style="{StaticResource accentLabel}">
+                            Style="{StaticResource accentLabel}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="RegisterLabel_Tapped"/>
                         </Label.GestureRecognizers>
@@ -35,26 +35,26 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout x:Name="registerStackLayout"
-                         VerticalOptions="Center"
-                         IsVisible="False">
+                            VerticalOptions="Center"
+                            IsVisible="False">
                 <Entry Placeholder="Name"
-                       Text="{Binding Name, Mode=TwoWay}"/>
+                        Text="{Binding Name, Mode=TwoWay}"/>
                 <Entry Placeholder="Email"
-                       Keyboard="Email"
-                       Text="{Binding Email, Mode=TwoWay}"/>
+                        Keyboard="Email"
+                        Text="{Binding Email, Mode=TwoWay}"/>
                 <Entry Placeholder="Password"
-                       Text="{Binding Password, Mode=TwoWay}"
-                       IsPassword="True"/>
+                        Text="{Binding Password, Mode=TwoWay}"
+                        IsPassword="True"/>
                 <Entry Placeholder="Confirm password"
-                       Text="{Binding ConfirmPassword, Mode=TwoWay}"
-                       IsPassword="True"/>
+                        Text="{Binding ConfirmPassword, Mode=TwoWay}"
+                        IsPassword="True"/>
                 <Button Text="Register"
                         Command="{Binding RegisterCommand}"
                         CommandParameter="{Binding CanRegister}"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Already have an account?"/>
                     <Label Text="Login"
-                           Style="{StaticResource accentLabel}">
+                            Style="{StaticResource accentLabel}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="LoginLabel_Tapped"/>
                         </Label.GestureRecognizers>

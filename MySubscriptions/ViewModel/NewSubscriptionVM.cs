@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using MySubscriptions.ViewModel.Helpers;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace MySubscriptions.ViewModel
 {
@@ -52,17 +53,18 @@ namespace MySubscriptions.ViewModel
 
         private void SaveSubscription(object obj)
         {
-            bool result = DatabaseHelper.InsertSubscription(new Model.Subscription
+            var result = DatabaseHelper.InsertSubscription(new Model.Subscription
             {
                 IsActive = IsActive,
                 Name = Name,
                 UserId = Auth.GetCurrentUserId(),
-                SubscribedDate = DateTime.Now
+                SubscribedDate = DateTime.Now,
+                Id="nlfkjdbsnjkfgds"
             });
-            if (result)
+            if (result.Keys.First())
                 App.Current.MainPage.Navigation.PopAsync();
             else
-                App.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again", "Ok");
+                App.Current.MainPage.DisplayAlert("Error", result.Values.First(), "Ok");
         }
 
         private void OnPropertyChanged(string propertyName)
